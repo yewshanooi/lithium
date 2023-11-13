@@ -1,4 +1,5 @@
-# bea
-A Discord RPG bot.
-
-Coming soon - Q1 2024
+<p align="center">
+    <h1 align="center">Bea</h1>
+    <h4 align="center">A Discord RPG bot</h4>
+    <h4 align="center">Coming soon - Q1 2024</h4>
+</p>
