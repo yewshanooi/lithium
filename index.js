@@ -8,9 +8,10 @@ global.errors = require('./errors.js');
 // Initialise mongoose npm package to manage MongoDB database
 const mongoose = require('mongoose');
 
-const {Client, Collection, GatewayIntentBits, InteractionType, Partials } = require('discord.js');
+const {Client, Collection, EmbedBuilder, GatewayIntentBits, InteractionType, Partials } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildModeration, GatewayIntentBits.GuildIntegrations, GatewayIntentBits.GuildWebhooks, GatewayIntentBits.GuildInvites, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMessageTyping, GatewayIntentBits.DirectMessages, GatewayIntentBits.DirectMessageReactions, GatewayIntentBits.DirectMessageTyping], partials: [Partials.Channel] });
 client.commands = new Collection();
+const cooldowns = new Collection();
 
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));

@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 // global.errors[0]
 const noUserDocument = new Discord.EmbedBuilder()
     .setTitle('Error')
-    .setDescription('User doesn\'t have an existing entry in the database.\nType `/useradd {user}` to get started.')
+    .setDescription('You are not registered with Bea RPG. Use `/start` to get started.')
     .setColor('#ff5555');
 
 // global.errors[1]
