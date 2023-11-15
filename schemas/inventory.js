@@ -4,7 +4,11 @@ const inventorySchema = new Schema({
     userName: String,
     userId: String,
     guildId: String,
-    item: String
+    wood: { type: Number, default: 0 },
+    stone: { type: Number, default: 0 },
+    fish: { type: Number, default: 0 },
+    item: String,
+    consumable: String
 });
 
 module.exports = model('Inventory', inventorySchema, 'inventories');

@@ -21,7 +21,11 @@ module.exports = {
 
         const inventoryEmbed = new EmbedBuilder()
             .setTitle(`${userField.username}'s Inventory`)
-            .setDescription(`${userInventory.item || 'No item found.'}`);
+            .setDescription(`${userInventory.wood || '0'} wood\n${userInventory.stone || '0'} stone\n${userInventory.fish || '0'} fish`)
+            .addFields(
+                { name: 'Item', value: `${userInventory.item || 'None'}` },
+                { name: 'Consumable', value: `${userInventory.consumable || 'None'}` }
+            );
         interaction.reply({ embeds: [inventoryEmbed] });
 	}
 };

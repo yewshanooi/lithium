@@ -38,7 +38,11 @@ module.exports = {
                 userName: userField.username,
                 userId: userField.id,
                 guildId: interaction.guild.id,
-                item: null
+                wood: 0,
+                stone: 0,
+                fish: 0,
+                item: null,
+                consumable: null
             });
 
             await Promise.all([userProfile.save(), userInventory.save()]).then(() => {
