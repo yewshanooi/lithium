@@ -5,7 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('mine')
 		.setDescription('Mine a rock'),
-	cooldown: '3',
+	cooldown: '5',
 	guildOnly: true,
 	async execute (interaction) {
 		const userField = interaction.user;
@@ -23,11 +23,11 @@ module.exports = {
             const newStoneAmount = userInventory.stone + stoneAmount;
 
         const embed = new EmbedBuilder()
-            .setTitle(`${userField.username} got ${stoneAmount} stone`)
+            .setTitle(`+ ${stoneAmount} stone`)
             .setFooter({ text: `You have a total of ${newStoneAmount} stone` })
             .setColor('#7f7f7f');
 
-        await Inventory.findOneAndUpdate({ _id: userInventory._id }, { stone: newStoneAmount }).then(
+        await Inventory.findOneAndUpdate({ _id: userInventory._id }, { $inc: { stone: stoneAmount }}).then(
             interaction.reply({ embeds: [embed] })
         )
         .catch(console.error);

@@ -5,7 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('chop')
 		.setDescription('Chop a tree'),
-	cooldown: '3',
+	cooldown: '5',
 	guildOnly: true,
 	async execute (interaction) {
 		const userField = interaction.user;
@@ -23,11 +23,11 @@ module.exports = {
             const newWoodAmount = userInventory.wood + woodAmount;
 
         const embed = new EmbedBuilder()
-            .setTitle(`${userField.username} got ${woodAmount} wood`)
+            .setTitle(`+ ${woodAmount} wood`)
             .setFooter({ text: `You have a total of ${newWoodAmount} wood` })
             .setColor('#bc9862');
 
-        await Inventory.findOneAndUpdate({ _id: userInventory._id }, { wood: newWoodAmount }).then(
+        await Inventory.findOneAndUpdate({ _id: userInventory._id }, { $inc: { wood: woodAmount }}).then(
             interaction.reply({ embeds: [embed] })
         )
         .catch(console.error);

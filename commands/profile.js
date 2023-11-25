@@ -22,9 +22,9 @@ module.exports = {
         const profileEmbed = new EmbedBuilder()
             .setTitle(`${userField.username}'s Profile`)
             .addFields(
-                { name: 'Progress', value: `**XP:** ${userProfile.xp}` },
+                { name: 'Progress', value: `**XP** ${userProfile.xp}` },
                 { name: 'Equipment', value: `${userProfile.weapon || 'No weapon'}\n${userProfile.armor || 'No armor'}`},
-                { name: 'Stats', value: `**ATK:** ${userProfile.atk}\n**DEF:** ${userProfile.def}\n**HP:** ${userProfile.hp}` },
+                { name: 'Stats', value: `**ATK** ${userProfile.atk}\n**DEF** ${userProfile.def}\n**HP** ${userProfile.hp}` },
                 { name: 'Coins', value: `${userProfile.coin}` }
             );
         interaction.reply({ embeds: [profileEmbed] });

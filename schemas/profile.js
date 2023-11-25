@@ -5,10 +5,10 @@ const profileSchema = new Schema({
     userId: String,
     guildId: String,
     xp: { type: Number, default: 0 },
-    weapon: String,
-    armor: String,
+    weapon: { type: String, default: null },
+    armor: { type: String, default: null },
     atk: { type: Number, default: 1 },
-    def: { type: Number, default: 1 },
+    def: { type: Number, default: 0 },
     hp: { type: Number, default: 100 },
     coin: { type: Number, default: 0 },
 });

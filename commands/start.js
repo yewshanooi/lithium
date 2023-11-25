@@ -1,6 +1,6 @@
 const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
-const Profile = require('../schemas/profile');
 const Inventory = require('../schemas/inventory');
+const Profile = require('../schemas/profile');
 const mongoose = require('mongoose');
 const chalk = require('chalk');
 
@@ -23,26 +23,14 @@ module.exports = {
                 _id: new mongoose.Types.ObjectId(),
                 userName: userField.username,
                 userId: userField.id,
-                guildId: interaction.guild.id,
-                xp: 0,
-                weapon: null,
-                armor: null,
-                atk: 1,
-                def: 1,
-                hp: 100,
-                coin: 0
+                guildId: interaction.guild.id
             });
 
             userInventory = await new Inventory({
                 _id: new mongoose.Types.ObjectId(),
                 userName: userField.username,
                 userId: userField.id,
-                guildId: interaction.guild.id,
-                wood: 0,
-                stone: 0,
-                fish: 0,
-                item: null,
-                consumable: null
+                guildId: interaction.guild.id
             });
 
             await Promise.all([userProfile.save(), userInventory.save()]).then(() => {

@@ -7,8 +7,8 @@ const inventorySchema = new Schema({
     wood: { type: Number, default: 0 },
     stone: { type: Number, default: 0 },
     fish: { type: Number, default: 0 },
-    item: String,
-    consumable: String
+    item: { type: String, default: null },
+    consumable: { type: String, default: null }
 });
 
 module.exports = model('Inventory', inventorySchema, 'inventories');

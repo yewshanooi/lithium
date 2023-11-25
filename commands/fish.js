@@ -5,7 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('fish')
 		.setDescription('Catch a fish'),
-	cooldown: '3',
+	cooldown: '5',
 	guildOnly: true,
 	async execute (interaction) {
 		const userField = interaction.user;
@@ -23,11 +23,11 @@ module.exports = {
             const newFishAmount = userInventory.fish + fishAmount;
 
         const embed = new EmbedBuilder()
-            .setTitle(`${userField.username} got ${fishAmount} fish`)
+            .setTitle(`+ ${fishAmount} fish`)
             .setFooter({ text: `You have a total of ${newFishAmount} fish` })
             .setColor('#6b9f93');
 
-        await Inventory.findOneAndUpdate({ _id: userInventory._id }, { fish: newFishAmount }).then(
+        await Inventory.findOneAndUpdate({ _id: userInventory._id }, { $inc: { fish: fishAmount }}).then(
             interaction.reply({ embeds: [embed] })
         )
         .catch(console.error);
