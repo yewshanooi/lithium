@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 	dotenv.config();
 const chalk = require('chalk');
 global.errors = require('./errors.js');
+global.shopItems = require('./shopItems.js');
 
 // Initialise mongoose npm package to manage MongoDB database
 const mongoose = require('mongoose');

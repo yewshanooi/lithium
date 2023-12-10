@@ -3,7 +3,6 @@ const profileSchema = new Schema({
     _id: Schema.Types.ObjectId,
     userName: String,
     userId: String,
-    guildId: String,
     xp: { type: Number, default: 0 },
     weapon: { type: String, default: null },
     armor: { type: String, default: null },

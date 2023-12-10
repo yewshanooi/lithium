@@ -11,8 +11,7 @@ module.exports = {
 		const userField = interaction.user;
         
         let userProfile = await Profile.findOne({
-            userId: userField.id,
-            guildId: interaction.guild.id,
+            userId: userField.id
         });
 
         if (userProfile === null) {
@@ -23,10 +22,11 @@ module.exports = {
             .setTitle(`${userField.username}'s Profile`)
             .addFields(
                 { name: 'Progress', value: `**XP** ${userProfile.xp}` },
-                { name: 'Equipment', value: `${userProfile.weapon || 'No weapon'}\n${userProfile.armor || 'No armor'}`},
                 { name: 'Stats', value: `**ATK** ${userProfile.atk}\n**DEF** ${userProfile.def}\n**HP** ${userProfile.hp}` },
-                { name: 'Coins', value: `${userProfile.coin}` }
+                { name: 'Equipment', value: `${userProfile.weapon || 'No weapon'}\n${userProfile.armor || 'No armor'}`},
+                { name: 'Coins', value: `🪙 ${userProfile.coin}` }
             );
-        interaction.reply({ embeds: [profileEmbed] });
+        
+        return interaction.editReply({ embeds: [profileEmbed] });
 	}
 };

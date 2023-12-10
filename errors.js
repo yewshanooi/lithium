@@ -24,4 +24,16 @@ const databaseEmpty = new Discord.EmbedBuilder()
     .setDescription('There is no existing entry in the database.')
     .setColor('#ff5555')
 
-module.exports = [noUserDocument, guildOnlyCommand, errorExecuting, databaseEmpty];
+// global.errors[4]
+const notEnoughCoins = new Discord.EmbedBuilder()
+    .setTitle('Error')
+    .setDescription('You do not have enough coins to buy this item.')
+    .setColor('#ff5555')
+
+// global.error[5]
+const itemNotFound = new Discord.EmbedBuilder()
+    .setTitle('Error')
+    .setDescription('This item does not exist.')
+    .setColor('#ff5555')
+
+module.exports = [noUserDocument, guildOnlyCommand, errorExecuting, databaseEmpty, notEnoughCoins, itemNotFound];

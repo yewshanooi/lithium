@@ -12,8 +12,7 @@ module.exports = {
 		const userField = interaction.user;
 
         let userProfile = await Profile.findOne({
-            userId: userField.id,
-            guildId: interaction.guild.id,
+            userId: userField.id
         });
 
         if (userProfile === null) {

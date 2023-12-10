@@ -14,27 +14,24 @@ module.exports = {
 		const userField = interaction.user;
         
         let userProfile = await Profile.findOne({
-            userId: userField.id,
-            guildId: interaction.guild.id,
+            userId: userField.id
         });
 
         if (!userProfile) {
             userProfile = await new Profile({
                 _id: new mongoose.Types.ObjectId(),
                 userName: userField.username,
-                userId: userField.id,
-                guildId: interaction.guild.id
+                userId: userField.id
             });
 
             userInventory = await new Inventory({
                 _id: new mongoose.Types.ObjectId(),
                 userName: userField.username,
-                userId: userField.id,
-                guildId: interaction.guild.id
+                userId: userField.id
             });
 
             await Promise.all([userProfile.save(), userInventory.save()]).then(() => {
-                console.log(`${chalk.white.bold(`[Bea - New User] User ID: ${userField.id}, Guild ID: ${interaction.guild.id}`)}`);
+                console.log(`${chalk.white.bold(`[Bea] New User: ${userField.username} (${userField.id})`)}`);
 
                 const welcomeMessage = new EmbedBuilder()
                     .setTitle(`Welcome to Bea RPG, ${userField.username}!`)

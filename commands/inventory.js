@@ -11,8 +11,7 @@ module.exports = {
 		const userField = interaction.user;
         
         let userInventory = await Inventory.findOne({
-            userId: userField.id,
-            guildId: interaction.guild.id,
+            userId: userField.id
         });
 
         if (userInventory === null) {
@@ -21,11 +20,14 @@ module.exports = {
 
         const inventoryEmbed = new EmbedBuilder()
             .setTitle(`${userField.username}'s Inventory`)
-            .setDescription(`${userInventory.wood || '0'} **wood**\n${userInventory.stone || '0'} **stone**\n${userInventory.fish || '0'} **fish**`)
-            .addFields(
-                { name: 'Items', value: `${userInventory.item || 'None'}` },
-                { name: 'Consumables', value: `${userInventory.consumable || 'None'}` }
-            );
-        interaction.reply({ embeds: [inventoryEmbed] });
+
+            if (userInventory.item && userInventory.item.length > 0) {
+                const items = userInventory.item.map(item => `**${item.name}** ${item.quantity}`).join('\n');
+                inventoryEmbed.setDescription(`**Wood** ${userInventory.wood || '0'}\n**Stone** ${userInventory.stone || '0'}\n**Fish** ${userInventory.fish || '0'}\n${items}`);
+            } else {
+                inventoryEmbed.setDescription(`**Wood** ${userInventory.wood || '0'}\n**Stone** ${userInventory.stone || '0'}\n**Fish** ${userInventory.fish || '0'}`);
+            };
+
+        return interaction.editReply({ embeds: [inventoryEmbed] });
 	}
 };

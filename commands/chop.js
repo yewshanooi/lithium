@@ -11,8 +11,7 @@ module.exports = {
 		const userField = interaction.user;
 
         let userInventory = await Inventory.findOne({
-            userId: userField.id,
-            guildId: interaction.guild.id,
+            userId: userField.id
         });
 
         if (userInventory === null) {
