@@ -59,7 +59,7 @@ module.exports = {
                 }
                 console.log(`[Bea] Added ${quantityField} ${itemFound.name} to ${userField.username}'s inventory}`);
             } catch (err) {
-                console.error('[Error] ', err);
+                console.error(err);
             };
 
             const purchaseSuccess = new EmbedBuilder()

@@ -5,7 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('mine')
 		.setDescription('Mine a rock'),
-	cooldown: '5',
+	cooldown: '30',
 	guildOnly: true,
 	async execute (interaction) {
 		const userField = interaction.user;
@@ -18,17 +18,41 @@ module.exports = {
             return interaction.reply({ embeds: [global.errors[0]] });
         }
 
-        const stoneAmount = Math.floor((Math.random() * 10) + 1);
-            const newStoneAmount = userInventory.stone + stoneAmount;
+        const stoneAmount = Math.floor((Math.random() * 5) + 1);
+
+        try {
+            const inventory = await Inventory.findOne({
+                userId: userField.id,
+                'item.name': 'Stone'
+            });
+
+            if (inventory) {
+                await Inventory.findOneAndUpdate({
+                    userId: userField.id,
+                    'item.name': 'Stone'
+                }, {
+                    $inc: { 'item.$.quantity': stoneAmount }
+                });
+            } else {
+                await Inventory.findOneAndUpdate({
+                    userId: userField.id
+                }, {
+                    $push: {
+                        item: {
+                            name: 'Stone',
+                            quantity: stoneAmount
+                        }
+                    }
+                });
+            }
+        } catch (err) {
+            console.error(err);
+        };
 
         const embed = new EmbedBuilder()
             .setTitle(`+ ${stoneAmount} stone`)
-            .setFooter({ text: `You have a total of ${newStoneAmount} stone` })
             .setColor('#7f7f7f');
 
-        await Inventory.findOneAndUpdate({ _id: userInventory._id }, { $inc: { stone: stoneAmount }}).then(
-            interaction.reply({ embeds: [embed] })
-        )
-        .catch(console.error);
+        return interaction.reply({ embeds: [embed] });
 	}
 };

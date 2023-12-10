@@ -23,11 +23,12 @@ module.exports = {
 
             if (userInventory.item && userInventory.item.length > 0) {
                 const items = userInventory.item.map(item => `**${item.name}** ${item.quantity}`).join('\n');
-                inventoryEmbed.setDescription(`**Wood** ${userInventory.wood || '0'}\n**Stone** ${userInventory.stone || '0'}\n**Fish** ${userInventory.fish || '0'}\n${items}`);
+                inventoryEmbed.setDescription(items);
             } else {
-                inventoryEmbed.setDescription(`**Wood** ${userInventory.wood || '0'}\n**Stone** ${userInventory.stone || '0'}\n**Fish** ${userInventory.fish || '0'}`);
+                inventoryEmbed.setDescription('No items found.');
             };
 
+        await interaction.deferReply();
         return interaction.editReply({ embeds: [inventoryEmbed] });
 	}
 };

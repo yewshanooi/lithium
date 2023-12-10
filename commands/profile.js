@@ -27,6 +27,6 @@ module.exports = {
                 { name: 'Coins', value: `🪙 ${userProfile.coin}` }
             );
         
-        return interaction.editReply({ embeds: [profileEmbed] });
+        return interaction.reply({ embeds: [profileEmbed] });
 	}
 };
