@@ -21,6 +21,8 @@ module.exports = {
         const inventoryEmbed = new EmbedBuilder()
             .setTitle(`${userField.username}'s Inventory`)
 
+            userInventory.item = userInventory.item.filter(item => item.quantity > 0);
+
             if (userInventory.item && userInventory.item.length > 0) {
                 const items = userInventory.item.map(item => `**${item.name}** ${item.quantity}`).join('\n');
                 inventoryEmbed.setDescription(items);

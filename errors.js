@@ -30,10 +30,28 @@ const notEnoughCoins = new Discord.EmbedBuilder()
     .setDescription('You do not have enough coins to buy this item.')
     .setColor('#ff5555')
 
-// global.error[5]
+// global.errors[5]
 const itemNotFound = new Discord.EmbedBuilder()
     .setTitle('Error')
     .setDescription('This item does not exist.')
     .setColor('#ff5555')
 
-module.exports = [noUserDocument, guildOnlyCommand, errorExecuting, databaseEmpty, notEnoughCoins, itemNotFound];
+// global.errors[6]
+const noHealthPotion = new Discord.EmbedBuilder()
+    .setTitle('Error')
+    .setDescription('You do not have a Health Potion.')
+    .setColor('#ff5555')
+
+// global.errors[7]
+const alreadyFullHealth = new Discord.EmbedBuilder()
+    .setTitle('Error')
+    .setDescription('You already have **100** HP.')
+    .setColor('#ff5555')
+
+// global.errors[8]
+const noHealth = new Discord.EmbedBuilder()
+    .setTitle('Error')
+    .setDescription('You do not have enough HP to do this.')
+    .setColor('#ff5555')
+
+module.exports = [noUserDocument, guildOnlyCommand, errorExecuting, databaseEmpty, notEnoughCoins, itemNotFound, noHealthPotion, alreadyFullHealth, noHealth];
