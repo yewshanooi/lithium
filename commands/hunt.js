@@ -99,12 +99,11 @@ module.exports = {
                     const newRemoveCoinAmount = userProfile.coin - smallestAmount;
 
                 killedByMonster.setDescription(`\\- ${smallestAmount} coins`)
-                killedByMonster.setFooter({ text: `You have ${newRemoveCoinAmount} coins left` });
+                killedByMonster.setFooter({ text: `${newRemoveCoinAmount} coins remaining` });
 
                 await Profile.updateOne({ _id: userProfile._id }, { $set: { hp: 0, coin: newRemoveCoinAmount } }).catch(console.error);
                 interaction.reply({ embeds: [killedByMonster] });
             }
-
         }
 
 	}
