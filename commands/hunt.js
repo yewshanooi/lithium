@@ -10,36 +10,32 @@ const monster = [
     { name: 'Skeleton', damage: 7 },
     { name: 'Goblin', damage: 9 },
     { name: 'Dwarf', damage: 9 },
-    { name: 'Imp', damage: 9 },
-    { name: 'Giant Rat', damage: 11 },
-    { name: 'White Wolf', damage: 13 },
-    { name: 'Monkey', damage: 13 },
-    { name: 'Revenant Imp', damage: 13 },
-    { name: 'Minotaur', damage: 15 },
-    { name: 'Scorpion', damage: 16 },
-    { name: 'Mugger', damage: 18 },
+    { name: 'Imp', damage: 10 },
+    { name: 'Giant Rat', damage: 10 },
+    { name: 'White Wolf', damage: 11 },
+    { name: 'Monkey', damage: 12 },
+    { name: 'Minotaur', damage: 13 },
+    { name: 'Scorpion', damage: 15 },
+    { name: 'Mugger', damage: 16 },
     { name: 'Miner', damage: 18 },
-    { name: 'Revenant Goblin', damage: 18 },
     { name: 'Thief', damage: 20 },
     { name: 'Pirate', damage: 23 },
     { name: 'Guard', damage: 25 },
     { name: 'Wizard', damage: 25 },
     { name: 'Vampire', damage: 25 },
     { name: 'Witch', damage: 25 },
-    { name: 'Cyclops', damage: 25 },
-    { name: 'Barbarian', damage: 27 },
-    { name: 'Black Knight', damage: 28 },
-    { name: 'Grizzly Bear', damage: 30 },
-    { name: 'Cerberus', damage: 32 },
+    { name: 'Cyclops', damage: 26 },
+    { name: 'Barbarian', damage: 26 },
+    { name: 'Black Knight', damage: 27 },
+    { name: 'Grizzly Bear', damage: 28 },
+    { name: 'Cerberus', damage: 30 },
     { name: 'Icefiend', damage: 32 },
     { name: 'Fear Reaper', damage: 33 },
-    { name: 'King Scorpion', damage: 33 },
-    { name: 'Revenant Vampire', damage: 35 },
+    { name: 'King Scorpion', damage: 35 },
     { name: 'Ice Giant', damage: 38 },
-    { name: 'Werewolf', damage: 38 },
-    { name: 'Hellhound', damage: 38 },
-    { name: 'Dragon', damage: 40 },
-    { name: 'Revenant Dragon', damage: 45 }
+    { name: 'Werewolf', damage: 40 },
+    { name: 'Hellhound', damage: 43 },
+    { name: 'Dragon', damage: 45 }
 ];
 
 module.exports = {
@@ -51,6 +47,11 @@ module.exports = {
 	async execute (interaction) {
 		const userField = interaction.user;
         const randomMonster = monster[Math.floor(Math.random() * monster.length)];
+        const revenant = Math.floor(Math.random() * 10);
+            let resultMonster;
+                // A 10% chance to get the Revenant variant
+                if (revenant >= 9) resultMonster = `Revenant ${randomMonster.name}`;
+                else resultMonster = randomMonster.name;
 
         let userProfile = await Profile.findOne({
             userId: userField.id
@@ -72,24 +73,38 @@ module.exports = {
         const addCoinAmount = Math.floor((Math.random() * 10) + 1);
 
         if (damageReceived < currentHealth) {
+            // Damage Received is lesser than Current Health (Alive)
             const embed = new EmbedBuilder()
-                .setTitle(`${userField.username} slayed a ${randomMonster.name}`)
+                .setTitle(`${userField.username} slayed a ${resultMonster}`)
                 .setDescription(`+ ${addXPAmount} XP\n+ ${addCoinAmount} coins`)
                 .setFooter({ text: `${damageReceived} HP lost, ${newHPAmount}/100 HP remaining` })
                 .setColor('#27821e');
 
-            await Profile.updateOne({ _id: userProfile._id }, { $inc: { xp: addXPAmount, coin: addCoinAmount, hp: -damageReceived }}).catch(console.error);
+            await Profile.updateOne({ _id: userProfile._id }, { $inc: { xp: addXPAmount, coin: addCoinAmount, hp: -damageReceived } }).catch(console.error);
                 interaction.reply({ embeds: [embed] });
         } else {
-            const currentCoins = userProfile.coin;
-
+            // Damage Received is more than Current Health (Dead)
             const killedByMonster = new EmbedBuilder()
-                .setTitle(`${userField.username} have been killed by a ${randomMonster.name}`)
-                .setDescription(`\\- ${currentCoins} coins`)
+                .setTitle(`${userField.username} have been killed by a ${resultMonster}`)
                 .setColor('#27821e');
 
-            await Profile.updateOne({ _id: userProfile._id }, { $set: { coin: 0, hp: 0 }}).catch(console.error);
+            if (userProfile.coin === 0) {
+                // If user doesn't have any coins, set HP to 0
+                await Profile.updateOne({ _id: userProfile._id }, { $set: { hp: 0 } }).catch(console.error);
                 interaction.reply({ embeds: [killedByMonster] });
+            } else {
+                // If user have coins, set HP to 0 and set Coins to a new amount (check whether user have enough Coins to remove)
+                const removeCoinAmount = Math.floor((Math.random() * 100) + 1);
+                    const smallestAmount = Math.min(removeCoinAmount, userProfile.coin);
+                    const newRemoveCoinAmount = userProfile.coin - smallestAmount;
+
+                killedByMonster.setDescription(`\\- ${smallestAmount} coins`)
+                killedByMonster.setFooter({ text: `You have ${newRemoveCoinAmount} coins left` });
+
+                await Profile.updateOne({ _id: userProfile._id }, { $set: { hp: 0, coin: newRemoveCoinAmount } }).catch(console.error);
+                interaction.reply({ embeds: [killedByMonster] });
+            }
+
         }
 
 	}

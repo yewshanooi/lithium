@@ -22,9 +22,14 @@ module.exports = {
             .setTitle(`${userField.username}'s Inventory`)
 
             userInventory.item = userInventory.item.filter(item => item.quantity > 0);
+                // Only display 10 items from the user's inventory
+                const itemLimit = userInventory.item.slice(0, 10);
+                const items = itemLimit.map(item => `**${item.name}** ${item.quantity}`).join('\n');
 
-            if (userInventory.item && userInventory.item.length > 0) {
-                const items = userInventory.item.map(item => `**${item.name}** ${item.quantity}`).join('\n');
+            if (userInventory.item && userInventory.item.length === 10) {
+                inventoryEmbed.setDescription(items);
+                inventoryEmbed.setFooter({ text: `Your inventory is full. Use the /sell command to clear some items.` });
+            } else if (userInventory.item && userInventory.item.length > 0) {
                 inventoryEmbed.setDescription(items);
             } else {
                 inventoryEmbed.setDescription('No items found.');
