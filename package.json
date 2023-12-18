@@ -1,12 +1,12 @@
 {
-  "name": "bea",
-  "version": "0.1.3",
+  "name": "lithium",
+  "version": "0.1.5",
   "description": "A Discord RPG bot",
   "main": "index.js",
   "author": "Ooi Yew Shan",
-  "repository": "github:yewshanooi/ava",
-  "homepage": "https://github.com/yewshanooi/bea",
-  "bugs": "https://github.com/yewshanooi/bea/issues",
+  "repository": "github:yewshanooi/lithium",
+  "homepage": "https://github.com/yewshanooi/lithium",
+  "bugs": "https://github.com/yewshanooi/lithium/issues",
   "license": "MIT",
   "scripts": {
     "start": "node index.js"

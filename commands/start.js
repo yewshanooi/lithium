@@ -7,7 +7,7 @@ const chalk = require('chalk');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('start')
-		.setDescription('Begin your journey with Bea RPG'),
+		.setDescription('Begin your journey with Lithium RPG'),
     cooldown: '0',
     guildOnly: true,
 	async execute (interaction) {
@@ -31,10 +31,10 @@ module.exports = {
             });
 
             await Promise.all([userProfile.save(), userInventory.save()]).then(() => {
-                console.log(`${chalk.white.bold(`[Bea] New User: ${userField.username} (${userField.id})`)}`);
+                console.log(`${chalk.white.bold(`[Lithium] New User: ${userField.username} (${userField.id})`)}`);
 
                 const welcomeMessage = new EmbedBuilder()
-                    .setTitle(`Welcome to Bea RPG, ${userField.username}!`)
+                    .setTitle(`Welcome to Lithium RPG, ${userField.username}!`)
                     .setDescription('Use `/help` to view all of the commands that will help you throughout your journey.');
 
                 interaction.reply({ embeds: [welcomeMessage] });

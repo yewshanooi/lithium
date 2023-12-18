@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 // global.errors[0]
 const noUserDocument = new Discord.EmbedBuilder()
     .setTitle('Error')
-    .setDescription('You are not registered with Bea RPG. Use `/start` to get started.')
+    .setDescription('You are not registered with Lithium RPG. Use `/start` to get started.')
     .setColor('#ff5555');
 
 // global.errors[1]

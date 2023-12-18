@@ -57,7 +57,7 @@ module.exports = {
                         }
                     });
                 }
-                console.log(`[Bea] Added ${quantityField} ${itemFound.name} to ${userField.username}'s inventory}`);
+                console.log(`[Lithium] Added ${quantityField} ${itemFound.name} to ${userField.username}'s inventory}`);
             } catch (err) {
                 console.error(err);
             };
