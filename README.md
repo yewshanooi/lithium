@@ -9,10 +9,6 @@
         <img alt="Repository Size" src="https://img.shields.io/github/repo-size/yewshanooi/lithium?style=flat-square">
     </a>
   &nbsp;
-    <a href="https://github.com/yewshanooi/lithium/blob/main/LICENSE">
-        <img alt="License" src="https://img.shields.io/github/license/yewshanooi/lithium?style=flat-square">
-    </a>
-  &nbsp;
     <a href="https://github.com/yewshanooi/lithium/commits/">
         <img alt="Last Commit" src="https://img.shields.io/github/last-commit/yewshanooi/lithium?style=flat-square">
     </a>
