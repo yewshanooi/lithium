@@ -6,3 +6,6 @@ node_modules/
 
 # Package manifest
 package-lock.json
+
+# Game assets
+RPG Assets/
