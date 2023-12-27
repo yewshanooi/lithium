@@ -23,12 +23,18 @@ module.exports = {
         const currentLevelProgress = userProfile.xp % xpPerLevel;
         const nextLevelProgress = (currentLevelProgress / xpPerLevel) * 100;
 
+        let weapon = userProfile.weapon ? `**${userProfile.weapon}**` : '*No weapon*';
+            let weaponStatus = `${weapon}`;
+        
+        let armor = userProfile.armor ? `**${userProfile.armor}**` : '*No armor*';
+            let armorStatus = `${armor}`;
+
         const profileEmbed = new EmbedBuilder()
             .setTitle(`${userField.username}'s Profile`)
             .addFields(
                 { name: 'Progress', value: `**Level** ${currentLevel} (${nextLevelProgress.toFixed(1)}%)\n**XP** ${userProfile.xp}` },
                 { name: 'Stats', value: `**ATK** ${userProfile.atk}\n**DEF** ${userProfile.def}\n**HP** ${userProfile.hp}` },
-                { name: 'Equipment', value: `${userProfile.weapon || 'No weapon'}\n${userProfile.armor || 'No armor'}`},
+                { name: 'Equipment', value: `${weaponStatus}\n${armorStatus}`},
                 { name: 'Coins', value: `🪙 ${userProfile.coin}` }
             );
         

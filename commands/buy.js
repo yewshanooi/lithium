@@ -52,12 +52,13 @@ module.exports = {
                         $push: {
                             item: {
                                 name: itemFound.name,
+                                type: itemFound.type,
                                 quantity: quantityField
                             }
                         }
                     });
                 }
-                console.log(`[Lithium] Added ${quantityField} ${itemFound.name} to ${userField.username}'s inventory}`);
+                console.log(`[Lithium] Added ${quantityField} ${itemFound.name} to ${userField.username}'s inventory`);
             } catch (err) {
                 console.error(err);
             };

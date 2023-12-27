@@ -32,7 +32,7 @@ module.exports = {
             } else if (userInventory.item && userInventory.item.length > 0) {
                 inventoryEmbed.setDescription(items);
             } else {
-                inventoryEmbed.setDescription('No items found.');
+                inventoryEmbed.setDescription('*No items found*');
             };
 
         await interaction.deferReply();

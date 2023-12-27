@@ -23,18 +23,20 @@ module.exports = {
 
             global.shopItems[0].forEach(item => {
                 if (item.atk) {
-                    embed.addFields({ name: `${item.name} | ${item.price} 🪙`, value: `ATK +${item.atk}\n*${item.description}*` });
+                    embed.addFields({ name: `${item.name}   🪙 ${item.price}`, value: `ATK +${item.atk}\n*${item.description}*` });
                 }
                 else if (item.def) {
-                    embed.addFields({ name: `${item.name} | ${item.price} 🪙`, value: `DEF +${item.def}\n*${item.description}*` });
+                    embed.addFields({ name: `${item.name}   🪙 ${item.price}`, value: `DEF +${item.def}\n*${item.description}*` });
                 }
                 else if (item.hp) {
-                    embed.addFields({ name: `${item.name} | ${item.price} 🪙`, value: `HP +${item.hp}\n*${item.description}*` });
+                    embed.addFields({ name: `${item.name}   🪙 ${item.price}`, value: `HP +${item.hp}\n*${item.description}*` });
                 }
                 else {
-                    embed.addFields({ name: `${item.name} | ${item.price} 🪙`, value: `*${item.description}*` });
+                    embed.addFields({ name: `${item.name}   🪙 ${item.price}`, value: `*${item.description}*` });
                 }
             });
+
+            // [To-Do] Add a limit for a maximum of 25 embed fields.
 
         await interaction.deferReply();
         return interaction.editReply({ embeds: [embed] });

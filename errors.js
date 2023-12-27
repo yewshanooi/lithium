@@ -54,4 +54,16 @@ const noHealth = new Discord.EmbedBuilder()
     .setDescription('You do not have enough HP to do this.')
     .setColor('#ff5555')
 
-module.exports = [noUserDocument, guildOnlyCommand, errorExecuting, databaseEmpty, notEnoughCoins, itemNotFound, noHealthPotion, alreadyFullHealth, noHealth];
+// global.errors[9]
+const alreadyEquipItem = new Discord.EmbedBuilder()
+    .setTitle('Error')
+    .setDescription('You already equipped this item.')
+    .setColor('#ff5555')
+
+// global.errors[10]
+const cannotEquipItem = new Discord.EmbedBuilder()
+    .setTitle('Error')
+    .setDescription('You cannot equip this item.')
+    .setColor('#ff5555')
+
+module.exports = [noUserDocument, guildOnlyCommand, errorExecuting, databaseEmpty, notEnoughCoins, itemNotFound, noHealthPotion, alreadyFullHealth, noHealth, alreadyEquipItem, cannotEquipItem];
