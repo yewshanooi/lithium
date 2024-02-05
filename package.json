@@ -1,6 +1,6 @@
 {
   "name": "lithium",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A Discord RPG bot",
   "main": "index.js",
   "author": "Ooi Yew Shan",
@@ -17,8 +17,8 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "discord.js": "^14.14.1",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.4.1",
     "mongodb": "^6.3.0",
-    "mongoose": "^8.0.1"
+    "mongoose": "^8.1.1"
   }
 }

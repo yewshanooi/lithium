@@ -6,11 +6,11 @@
 
 <p align="center">
     <a href="https://github.com/yewshanooi/lithium/">
-        <img alt="Repository Size" src="https://img.shields.io/github/repo-size/yewshanooi/lithium?style=flat-square">
+        <img alt="Repository Size" src="https://img.shields.io/github/repo-size/yewshanooi/lithium?style=flat">
     </a>
   &nbsp;
     <a href="https://github.com/yewshanooi/lithium/commits/">
-        <img alt="Last Commit" src="https://img.shields.io/github/last-commit/yewshanooi/lithium?style=flat-square">
+        <img alt="Last Commit" src="https://img.shields.io/github/last-commit/yewshanooi/lithium?style=flat">
     </a>
 </p>
 <br/>
