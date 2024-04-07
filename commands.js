@@ -33,9 +33,12 @@ else {
 
 
 /*
- * To deploy application commands globally, use:
- * Routes.applicationCommands(process.env.CLIENT_ID), { body: commands }
+ * Due to Discord API's limitation, you can only deploy a maximum of 200 commands in a single guild per day.
+ * Trying to deploy more than 200 commands will cause the command to not execute properly.
  *
- * To delete all application commands globally, use:
- * Routes.applicationCommands(process.env.CLIENT_ID), { body: [] }
+ * Commands will only be deployed/deleted for a single guild by default for development purpose.
+ * Replace the specific line of code with the one given below to change this:
+ *
+ * To deploy globally:     Routes.applicationCommands(process.env.CLIENT_ID), { body }
+ * To delete globally:     Routes.applicationCommands(process.env.CLIENT_ID), { body: [] }
  */

@@ -9,7 +9,7 @@ global.shopItems = require('./shopItems.js');
 // Initialise mongoose npm package to manage MongoDB database
 const mongoose = require('mongoose');
 
-const {Client, Collection, EmbedBuilder, GatewayIntentBits, InteractionType, Partials } = require('discord.js');
+const { Client, Collection, EmbedBuilder, GatewayIntentBits, InteractionType, Partials } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildModeration, GatewayIntentBits.GuildIntegrations, GatewayIntentBits.GuildWebhooks, GatewayIntentBits.GuildInvites, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMessageTyping, GatewayIntentBits.DirectMessages, GatewayIntentBits.DirectMessageReactions, GatewayIntentBits.DirectMessageTyping], partials: [Partials.Channel] });
 client.commands = new Collection();
 const cooldowns = new Collection();
@@ -88,20 +88,20 @@ mongoose.connection.on('connected', () => {
 	console.log(`${chalk.greenBright.bold('[MongoDB] Successfully connected to database')}`)
 });
 
-// Mongoose Connection Event: Error
-mongoose.connection.on('error', (err) => {
-	console.log(`${chalk.redBright.bold('[MongoDB] Error: There was a problem connecting to MongoDB')}`, err)
-});
-
 // Mongoose Connection Event: Disconnected
 mongoose.connection.on('disconnected', () => {
-	console.log(`${chalk.redBright.bold('[MongoDB] Error: Disconnected from MongoDB')}`)
+	console.log(`${chalk.redBright.bold('[MongoDB - Error] Disconnected from MongoDB')}`)
+});
+
+// Mongoose Connection Event: Error
+mongoose.connection.on('error', (err) => {
+	console.log(`${chalk.redBright.bold('[MongoDB - Error] There was a problem connecting to MongoDB')}`, err)
 });
 
 
 client.login(process.env.TOKEN);
 
-// Async process to connect to MongoDB
+// Asynchronous process to connect to MongoDB
 (async () => {
 	await mongoose.connect(process.env.MONGODB_TOKEN).catch(console.error);
 })();

@@ -44,7 +44,7 @@ module.exports = {
         } else {
             const userAlreadyExist = new EmbedBuilder()
                 .setTitle('Error')
-                .setDescription(`You have already begin your journey with us.`)
+                .setDescription('You have already begin your journey with us.')
                 .setColor('#ff5555');
 
             interaction.reply({ embeds: [userAlreadyExist] });
