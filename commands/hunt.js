@@ -43,7 +43,6 @@ module.exports = {
 		.setName('hunt')
 		.setDescription('Fight a monster'),
 	cooldown: '3',
-	guildOnly: true,
 	async execute (interaction) {
 		const userField = interaction.user;
         const randomMonster = monster[Math.floor(Math.random() * monster.length)];
@@ -62,7 +61,7 @@ module.exports = {
         }
 
         if (userProfile.hp === 0) {
-            return interaction.reply({ embeds: [global.errors[8]] });
+            return interaction.reply({ content: 'Error: You do not have enough HP to do this.' });
         }
 
         const damageReceived = randomMonster.damage;

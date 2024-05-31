@@ -6,7 +6,6 @@ module.exports = {
 		.setName('inventory')
 		.setDescription('View your inventory'),
     cooldown: '0',
-    guildOnly: true,
 	async execute (interaction) {
 		const userField = interaction.user;
         

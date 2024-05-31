@@ -9,7 +9,6 @@ module.exports = {
 		.setName('start')
 		.setDescription('Begin your journey with Lithium RPG'),
     cooldown: '0',
-    guildOnly: true,
 	async execute (interaction) {
 		const userField = interaction.user;
         

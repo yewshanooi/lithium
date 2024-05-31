@@ -6,7 +6,6 @@ module.exports = {
 		.setName('shop')
 		.setDescription('View items available for purchase'),
 	cooldown: '0',
-	guildOnly: false,
 	async execute (interaction) {
         const userField = interaction.user;
 

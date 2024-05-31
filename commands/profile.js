@@ -6,7 +6,6 @@ module.exports = {
 		.setName('profile')
 		.setDescription('View your profile'),
     cooldown: '0',
-    guildOnly: true,
 	async execute (interaction) {
 		const userField = interaction.user;
         

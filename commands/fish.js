@@ -6,7 +6,6 @@ module.exports = {
 		.setName('fish')
 		.setDescription('Catch a fish'),
 	cooldown: '30',
-	guildOnly: true,
 	async execute (interaction) {
 		const userField = interaction.user;
 

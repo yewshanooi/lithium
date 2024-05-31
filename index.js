@@ -36,11 +36,6 @@ client.on('interactionCreate', async interaction => {
 
 	if (!command) return;
 
-	// Outputs an error message if user tries to run a guild-only command in a Direct Message
-	if (command.guildOnly && interaction.channel.type === 1) {
-		return interaction.reply({ embeds: [global.errors[1]] });
-	}
-
 	// Outputs an error message if user tries to run a command that is still on a cooldown
 	if (!cooldowns.has(command.data.name)) {
 		cooldowns.set(command.data.name, new Collection());
@@ -73,7 +68,7 @@ client.on('interactionCreate', async interaction => {
 	}
 	catch (error) {
 		console.error(error);
-		await interaction.reply({ embeds: [global.errors[2]] });
+		await interaction.reply({ embeds: [global.errors[1]] });
 	}
 });
 

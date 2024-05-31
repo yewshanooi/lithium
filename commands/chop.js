@@ -6,7 +6,6 @@ module.exports = {
 		.setName('chop')
 		.setDescription('Chop a tree'),
 	cooldown: '30',
-	guildOnly: true,
 	async execute (interaction) {
 		const userField = interaction.user;
 

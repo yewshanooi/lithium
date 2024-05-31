@@ -6,7 +6,6 @@ module.exports = {
 		.setName('mine')
 		.setDescription('Mine a rock'),
 	cooldown: '30',
-	guildOnly: true,
 	async execute (interaction) {
 		const userField = interaction.user;
 

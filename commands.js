@@ -33,9 +33,6 @@ else {
 
 
 /*
- * Due to Discord API's limitation, you can only deploy a maximum of 200 commands in a single guild per day.
- * Trying to deploy more than 200 commands will cause the command to not execute properly.
- *
  * Commands will only be deployed/deleted for a single guild by default for development purpose.
  * Replace the specific line of code with the one given below to change this:
  *

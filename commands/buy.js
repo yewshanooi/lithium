@@ -9,7 +9,6 @@ module.exports = {
         .addStringOption(option => option.setName('item').setDescription('Enter an item to buy').setRequired(true))
         .addIntegerOption(option => option.setName('quantity').setDescription('Enter an amount').setRequired(true)),
 	cooldown: '0',
-	guildOnly: true,
 	async execute (interaction) {
         const itemField = interaction.options.getString('item');
         const quantityField = interaction.options.getInteger('quantity');
@@ -24,7 +23,7 @@ module.exports = {
         let itemFound = global.shopItems[0].find(item => item.name === itemField);
 
         if (itemFound) {
-            if (userProfile.coin < (quantityField * itemFound.price)) return interaction.reply({ embeds: [global.errors[4]] });
+            if (userProfile.coin < (quantityField * itemFound.price)) return interaction.reply({ content: 'Error: You do not have enough coins to buy this item.' });
 
             const total = quantityField * itemFound.price;
             const coinsLeft = userProfile.coin - total;
@@ -71,7 +70,7 @@ module.exports = {
             await interaction.deferReply();
             return interaction.editReply({ embeds: [purchaseSuccess] });
         } else {
-            return interaction.reply({ embeds: [global.errors[5]] });
+            return interaction.reply({ content: 'Error: This item does not exist.' });
         };
 
 	}

@@ -6,8 +6,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('heal')
 		.setDescription('Heal using a Health Potion'),
-	cooldown: '5',
-	guildOnly: false,
+	cooldown: '3',
 	async execute (interaction) {
 		const userField = interaction.user;
 
@@ -22,7 +21,7 @@ module.exports = {
 		let userCurrentHealth = userProfile.hp;
 
 		if (userCurrentHealth === 100) {
-			return interaction.reply({ embeds: [global.errors[7]] });
+			return interaction.reply({ content: 'Error: You already have **100** HP.' });
 		}
 
 		let userInventory = await Inventory.findOne({
@@ -31,7 +30,7 @@ module.exports = {
         });
 
 		if (!userInventory) {
-			return interaction.reply({ embeds: [global.errors[6]] });
+			return interaction.reply({ content: 'Error: You do not have a Health Potion.' });
 		}
 
 
